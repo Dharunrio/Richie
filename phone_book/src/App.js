@@ -1,26 +1,28 @@
 import './Assets/CSS/App.css'
 import Register from './Pages/Register';
 import './Assets/CSS/App.css'
-import Home from './Components/Home';
+import Home from './Pages/Home';
 import { Route, Routes } from 'react-router-dom';
-import { userContext } from './Assets/Contexts/UserContext';
-import { useState } from 'react';
-
+import ContactArea from './Components/ContactArea';
+import SearchPage from './Pages/SearchPage';
+import AddContact from './Pages/AddContact';
+import EditContact from './Pages/EditContact';
+import GroupContact from './Pages/GroupContact';
 
 function App() {
 
-  const [user, setUser] = useState({});
-  
-  const contextValue = { user, setUser};
-
   return (
     <>
-    <userContext.Provider value={contextValue} >
       <Routes>
-          <Route exact path='/' element={<Register/>}/>
-          <Route exact path='/home' element={<Home/>}/>
-        </Routes>
-    </userContext.Provider>
+        <Route exact path='/' element={<Register />} />
+        <Route path='home' element={<Home />} >
+          <Route index element={<ContactArea/>} />
+          <Route path='search' element={<SearchPage/>} />
+          <Route path='addcontact' element={<AddContact/>} />
+          <Route path='editcontact' element={<EditContact/>} />
+          <Route path='groupcontact' element={<GroupContact/>} />
+        </Route>
+      </Routes>
     </>
   );
 }

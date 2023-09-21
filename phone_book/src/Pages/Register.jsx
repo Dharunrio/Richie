@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-import LoginForm from "../Components/LoginForm";
+import React, { useEffect, useState } from "react";
+import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import { InnerContainer } from "../Components/Elements";
-import SignupForm from "../Components/SignupForm";
+import SignupForm from "./SignupForm";
 import { AccountContext } from "../Assets/Contexts/AccountContext";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { userContext } from "../Assets/Contexts/UserContext";
+import store from "../Assets/Redux/Store";
 
 const RegisterContainer = styled.div`
   width: 100%;
@@ -103,42 +103,53 @@ const Register = (props) => {
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signin");
   const navigate = useNavigate();
-  const { user, setUser } = useContext(userContext);
+  const [user, setUser] = useState({});
+  const [error, setError] = useState({});
 
   const handleChange = (e) => {
-    e.preventDefault();
-
-    const { name, value } = e.target;
-
-    switch (name) {
-      case "fullname":
-        setUser({ ...user, fullname: value });
-
-        break;
-      case "email":
-        setUser({ ...user, email: value });
-
-        break;
-
-      case "password":
-        setUser({ ...user, password: value });
-
-        break;
-
-      case "cpassword":
-        setUser({ ...user, cpassword: value });
-
-        break;
-
-      default:
-        break;
-    }
+    setUser({...user, [e.target.name] : e.target.value});
   };
+
+  const validateForm = (value) => {
+    const errors = {};
+    const emailPattern = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+    const passwordPattern = /^(?=.*[0-9])(?=.*[a-z]).{8,32}$/
+
+    if (!value.email) {
+        errors.email = "Please enter email id"
+    }
+    else if (!emailPattern.test(value.email)) {
+        errors.email = 'Enter valid email'
+    }
+
+    if (!value.password) {
+        errors.password = "Please enter password"
+    }
+    else if (!passwordPattern.test(value.password)) {
+        errors.password = 'Enter valid password'
+    }
+
+    return errors;
+  }
+
+  useEffect(() => {
+
+    setError(validateForm(user));
+
+  }, [user])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
-    navigate("/home");
+    store.dispatch({
+      type : "login",
+      payload : user
+    })
+    if(Object.keys(error).length === 0) {
+      navigate("/home");
+    }
+    else {
+      alert('Invalid email and password')
+    }
   };
 
   const playExpandingAnimation = () => {
@@ -167,6 +178,7 @@ const Register = (props) => {
     switchToSignin,
     handleChange,
     handleSubmit,
+    error
   };
 
   return (
