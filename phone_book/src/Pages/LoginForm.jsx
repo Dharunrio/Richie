@@ -21,7 +21,7 @@ const LoginForm = (props) => {
             name="email"
             type="email"
             onChange={handleChange}
-            placeholder="Email"
+            cplaceholder="Email"
           />
           <span style={{ color: 'red', fontSize: 'small', textAlign: 'start', display: 'flex', padding: 4, paddingLeft: 10 }} > {error.email} </span>
           <Input

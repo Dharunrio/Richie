@@ -4,58 +4,50 @@ import store from "../Assets/Redux/Store";
 function AddContact() {
   return (
     <>
-      <p style={{ color: "white" }}>Add contact page...</p>
-      <p style={{ color: "white" }}> {store.getState().email} </p>
-      <div className="container-fluid">
-
+      {/* <p style={{ color: "white" }}>Add contact page...</p> */}
+      {/* <p style={{ color: "white" }}> {store.getState().email} </p> */}
+      <div className="container-fluid pt-4" style={{ maxWidth : "80%", paddingRight : "5%"}}>
+        <h3 className="py-3 text-light">New Contact</h3>
       <form>
-        <div className="form-group">
-          <label className="text-white p-2">Name</label>
+        <div className="form-group pb-4">
+          {/* <label className="text-white p-2 pb-3">Name</label> */}
           <input
+            style={{color : "white"}}
             type="text"
-            className="form-control"
+            className="add-con-input my-3 form-control bg-secondary"
             id="exampleInputEmail1"
             placeholder="Enter Name"
             />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
         </div>
-        <div className="form-group">
-          <label className="text-white p-2">Mobile number</label>
+        <div className="form-group pb-4">
+          {/* <label className="text-white p-2 pb-3">Mobile number</label> */}
           <input
+            style={{color : "white"}}
             type="number"
-            className="form-control"
+            className="add-con-input my-3 form-control bg-secondary"
             id="exampleInputPassword1"
             placeholder="Mobile number"
             />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
         </div>
-        <div className="form-group">
-          <label className="text-white p-2">Email address</label>
+        <div className="form-group pb-4">
+          {/* <label className="text-white p-2 pb-3">Email address</label> */}
           <input
+            style={{color : "white"}}
             type="email"
-            className="form-control"
+            className="add-con-input my-3 form-control bg-secondary"
             id="exampleInputEmail1"
             placeholder="Enter email"
             />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
         </div>
-        <div className="form-group">
-          <label className="text-white p-2">Group</label>
+        <div className="form-group pb-4">
+          {/* <label className="text-white p-2 pb-3">Group</label> */}
           <input
+            style={{color : "white"}}
             type=""text
-            className="form-control"
+            className="add-con-input my-3 form-control bg-secondary"
             id="exampleInputEmail1"
             placeholder="Enter group name"
             />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
         </div>
         <div className="pt-4">
         <button type="submit" className="btn btn-primary d-flex align-items-center">

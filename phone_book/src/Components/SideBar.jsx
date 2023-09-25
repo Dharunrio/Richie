@@ -1,5 +1,5 @@
 import React from 'react'
-import { BoxArrowLeft, CollectionFill, HouseFill, PersonFill, PersonFillAdd, PersonFillGear, Search } from 'react-bootstrap-icons'
+import { BoxArrowLeft, CollectionFill, HouseFill, PersonFill, PersonFillAdd, PersonFillGear, Search, TelephoneFill } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 import store from '../Assets/Redux/Store'
 
@@ -7,8 +7,13 @@ function SideBar() {
   return (
     <>
         <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <Link to="/home" className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <span className="fs-5 d-none d-sm-inline">Menu</span>
+            <Link to="/" className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none my-4">
+                <span className="fs-5 d-none d-sm-inline mb-2">
+            <TelephoneFill size={20} className="mx-2"/>
+            <b>
+              PhonePro
+            </b>
+                </span>
             </Link>
             <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                 <li className="nav-item mb-3">
@@ -31,22 +36,22 @@ function SideBar() {
                     <Search color="azure" size={20}/> <span className="ms-1 d-none d-sm-inline text-secondary">Search</span> 
                     </Link>
                 </li>
-                <li className="nav-item mb-3">
+                {/* <li className="nav-item mb-3">
                     <Link to="groupcontact" className="nav-link px-0 align-middle">
                     <CollectionFill color="azure" size={20}/> <span className="ms-1 d-none d-sm-inline text-secondary">Groups</span> 
                     </Link>
-                </li>
+                </li> */}
             </ul>
             <hr/>
             <div className="pb-4">
-                <Link to="/" className="nav-link align-middle px-0" style={{textDecoration : "none"}}>
-                    <PersonFill color="azure" size={20}/> <span className="ms-1 d-none d-sm-inline text-secondary">{ store.getState().email }</span>
+                <Link to="/home" className="nav-link align-middle px-0" style={{textDecoration : "none"}}>
+                    <PersonFill color="azure" size={20}/> <span className="ms-1 d-none d-sm-inline text-secondary">{ store.getState().email ? store.getState().email : "Profile" }</span>
                 </Link>
             </div>
             <div className="pb-4">
-                <Link to="/" className="nav-link align-middle px-0" style={{textDecoration : "none"}}>
+                <button className="nav-link align-middle px-0" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{textDecoration : "none"}}>
                     <BoxArrowLeft color="azure" size={20}/> <span className="ms-1 d-none d-sm-inline text-secondary">Logout</span>
-                </Link>
+                </button>
             </div>
         </div>
     </>

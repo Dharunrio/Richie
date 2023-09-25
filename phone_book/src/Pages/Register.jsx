@@ -184,36 +184,38 @@ const Register = (props) => {
   return (
     <>
       <AccountContext.Provider value={contextValue}>
-        <RegisterContainer>
-          <BoxContainer>
-            <TopContainer>
-              <BackDrop
-                initial={false}
-                animate={isExpanded ? "expanded" : "collapsed"}
-                variants={backdropVariants}
-                transition={expandingTransition}
-              />
-              {active === "signin" && (
-                <HeaderContainer>
-                  <HeaderText>Welcome</HeaderText>
-                  <HeaderText>Back</HeaderText>
-                  <SmallText>Please sign-in to continue!</SmallText>
-                </HeaderContainer>
-              )}
-              {active === "signup" && (
-                <HeaderContainer>
-                  <HeaderText>Create</HeaderText>
-                  <HeaderText>Account</HeaderText>
-                  <SmallText>Please sign-up to continue!</SmallText>
-                </HeaderContainer>
-              )}
-            </TopContainer>
-            <InnerContainer>
-              {active === "signin" && <LoginForm />}
-              {active === "signup" && <SignupForm />}
-            </InnerContainer>
-          </BoxContainer>
-        </RegisterContainer>
+        <div className="register-container bg-dark bg-gradient h-100">
+          <RegisterContainer>
+            <BoxContainer>
+              <TopContainer>
+                <BackDrop
+                  initial={false}
+                  animate={isExpanded ? "expanded" : "collapsed"}
+                  variants={backdropVariants}
+                  transition={expandingTransition}
+                />
+                {active === "signin" && (
+                  <HeaderContainer>
+                    <HeaderText>Welcome</HeaderText>
+                    <HeaderText>Back</HeaderText>
+                    <SmallText>Please sign-in to continue!</SmallText>
+                  </HeaderContainer>
+                )}
+                {active === "signup" && (
+                  <HeaderContainer>
+                    <HeaderText>Create</HeaderText>
+                    <HeaderText>Account</HeaderText>
+                    <SmallText>Please sign-up to continue!</SmallText>
+                  </HeaderContainer>
+                )}
+              </TopContainer>
+              <InnerContainer>
+                {active === "signin" && <LoginForm />}
+                {active === "signup" && <SignupForm />}
+              </InnerContainer>
+            </BoxContainer>
+          </RegisterContainer>
+        </div>
       </AccountContext.Provider>
     </>
   );
